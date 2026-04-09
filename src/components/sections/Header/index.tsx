@@ -131,9 +131,6 @@ function MobileMenu(props) {
             return;
         }
 
-        const previousBodyOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
                 setIsMenuOpen(false);
@@ -143,13 +140,12 @@ function MobileMenu(props) {
         window.addEventListener('keydown', handleKeyDown);
 
         return () => {
-            document.body.style.overflow = previousBodyOverflow;
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, [isMenuOpen]);
 
     return (
-        <div className="ml-auto lg:hidden">
+        <div className="mobile-menu-mobile ml-auto lg:hidden">
             <button
                 type="button"
                 aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
@@ -160,30 +156,8 @@ function MobileMenu(props) {
                 <span className="mobile-menu-trigger-label">{isMenuOpen ? 'Fechar' : 'Menu'}</span>
                 {isMenuOpen ? <CloseIcon className="fill-current w-icon h-icon" /> : <MenuIcon className="fill-current w-icon h-icon" />}
             </button>
-            <div
-                className={classNames('mobile-menu-panel fixed inset-0 z-50', {
-                    'pointer-events-none': !isMenuOpen,
-                    'pointer-events-auto': isMenuOpen
-                })}
-            >
-                <button
-                    type="button"
-                    aria-label="Close Menu"
-                    className={classNames('mobile-menu-backdrop', {
-                        'opacity-100': isMenuOpen,
-                        'opacity-0': !isMenuOpen
-                    })}
-                    onClick={() => setIsMenuOpen(false)}
-                />
-                <aside
-                    className={classNames('mobile-menu-drawer', {
-                        'translate-x-0 opacity-100': isMenuOpen,
-                        'translate-x-full opacity-0': !isMenuOpen
-                    })}
-                    role="dialog"
-                    aria-modal="true"
-                    aria-label="Menu principal"
-                >
+            {isMenuOpen && (
+                <div className="mobile-menu-inline-panel" role="dialog" aria-modal="true" aria-label="Menu principal">
                     <div className="mobile-menu-header">
                         <SiteLogoLink {...logoProps} forceTitle={true} />
                         <button
@@ -226,8 +200,8 @@ function MobileMenu(props) {
                             </nav>
                         </div>
                     )}
-                </aside>
-            </div>
+                </div>
+            )}
         </div>
     );
 }
