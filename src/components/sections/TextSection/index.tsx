@@ -11,6 +11,7 @@ export default function TextSection(props) {
     const sectionAlign = styles.self?.textAlign ?? 'left';
     const panelClass = styles.self?.class;
     const mediaClass = styles.self?.mediaClass;
+    const useBackgroundMedia = media?.type === 'VideoBlock';
 
     return (
         <Section elementId={elementId} colors={colors} styles={styles.self}>
@@ -22,33 +23,54 @@ export default function TextSection(props) {
                     mediaPlacement={mediaPlacement}
                     panelClass={panelClass}
                     mediaClass={mediaClass}
+                    useBackgroundMedia={useBackgroundMedia}
                 />
             ) : (
-                <TextOneCol {...rest} align={sectionAlign} media={media} panelClass={panelClass} mediaClass={mediaClass} />
+                <TextOneCol
+                    {...rest}
+                    align={sectionAlign}
+                    media={media}
+                    panelClass={panelClass}
+                    mediaClass={mediaClass}
+                    useBackgroundMedia={useBackgroundMedia}
+                />
             )}
         </Section>
     );
 }
 
 function TextOneCol(props) {
-    const { title, subtitle, text, align, kicker = 'Apresentação', media, panelClass, mediaClass } = props as any;
+    const { title, subtitle, text, align, kicker = 'Apresentação', media, panelClass, mediaClass, useBackgroundMedia } =
+        props as any;
 
     return (
-        <div className={classNames('section-panel copy-panel', panelClass, mapStyles({ textAlign: align }))}>
-            {title && <div className="section-kicker">{kicker}</div>}
-            {title && <h2 className="section-title">{title}</h2>}
-            {subtitle && <p className={classNames('section-subtitle', { 'mt-3': title })}>{subtitle}</p>}
-            {text && (
-                <Markdown
-                    options={{ forceBlock: true, forceWrapper: true }}
-                    className={classNames('max-w-none prose sm:prose-lg', {
-                        'mt-6': title || subtitle
-                    })}
-                >
-                    {text}
-                </Markdown>
+        <div
+            className={classNames(
+                'section-panel copy-panel',
+                panelClass,
+                {
+                    'text-section-with-background-media': useBackgroundMedia
+                },
+                mapStyles({ textAlign: align })
             )}
-            {media && <TextSectionMedia media={media} className={classNames('mt-8', mediaClass)} />}
+        >
+            {useBackgroundMedia && <TextSectionBackgroundMedia media={media} className={mediaClass} />}
+            <div className="text-section-content relative z-1">
+                {title && <div className="section-kicker">{kicker}</div>}
+                {title && <h2 className="section-title">{title}</h2>}
+                {subtitle && <p className={classNames('section-subtitle', { 'mt-3': title })}>{subtitle}</p>}
+                {text && (
+                    <Markdown
+                        options={{ forceBlock: true, forceWrapper: true }}
+                        className={classNames('max-w-none prose sm:prose-lg', {
+                            'mt-6': title || subtitle
+                        })}
+                    >
+                        {text}
+                    </Markdown>
+                )}
+                {media && !useBackgroundMedia && <TextSectionMedia media={media} className={classNames('mt-8', mediaClass)} />}
+            </div>
         </div>
     );
 }
@@ -63,39 +85,58 @@ function TextTwoCol(props) {
         media,
         mediaPlacement,
         panelClass,
-        mediaClass
+        mediaClass,
+        useBackgroundMedia
     } = props as any;
 
     return (
         <div
             className={classNames(
-                'section-panel copy-panel text-section-split flex flex-wrap gap-6',
+                'section-panel copy-panel text-section-split',
                 panelClass,
-                mapStyles({ textAlign: align }),
                 {
-                    'lg:flex-row-reverse': media && mediaPlacement === 'left'
-                }
+                    'text-section-with-background-media': useBackgroundMedia
+                },
+                mapStyles({ textAlign: align })
             )}
         >
-            {(title || subtitle) && (
-                <div className={classNames('w-full', { 'lg:flex-1': text || media })}>
-                    {title && <div className="section-kicker">{kicker}</div>}
-                    {title && <h2 className="section-title">{title}</h2>}
-                    {subtitle && <p className={classNames('section-subtitle', { 'mt-3': title })}>{subtitle}</p>}
-                </div>
-            )}
-            {text && (
-                <div className={classNames('w-full', { 'lg:flex-1': media || title || subtitle })}>
-                    <Markdown options={{ forceBlock: true, forceWrapper: true }} className="prose max-w-none sm:prose-lg">
-                        {text}
-                    </Markdown>
-                </div>
-            )}
-            {media && (
-                <div className="w-full lg:flex-1">
-                    <TextSectionMedia media={media} className={mediaClass} />
-                </div>
-            )}
+            {useBackgroundMedia && <TextSectionBackgroundMedia media={media} className={mediaClass} />}
+            <div
+                className={classNames(
+                    'text-section-content relative z-1 flex flex-wrap gap-6',
+                    !useBackgroundMedia && {
+                        'lg:flex-row-reverse': media && mediaPlacement === 'left'
+                    }
+                )}
+            >
+                {(title || subtitle) && (
+                    <div className={classNames('w-full', { 'lg:flex-1': text || media })}>
+                        {title && <div className="section-kicker">{kicker}</div>}
+                        {title && <h2 className="section-title">{title}</h2>}
+                        {subtitle && <p className={classNames('section-subtitle', { 'mt-3': title })}>{subtitle}</p>}
+                    </div>
+                )}
+                {text && (
+                    <div className={classNames('w-full', { 'lg:flex-1': media || title || subtitle })}>
+                        <Markdown options={{ forceBlock: true, forceWrapper: true }} className="prose max-w-none sm:prose-lg">
+                            {text}
+                        </Markdown>
+                    </div>
+                )}
+                {media && !useBackgroundMedia && (
+                    <div className="w-full lg:flex-1">
+                        <TextSectionMedia media={media} className={mediaClass} />
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+function TextSectionBackgroundMedia({ media, className }) {
+    return (
+        <div className={classNames('text-section-background-media', className)} aria-hidden="true">
+            <DynamicComponent {...media} className={classNames('text-section-background-video', media.className)} />
         </div>
     );
 }

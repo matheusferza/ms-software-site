@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Link, Social } from '@/components/atoms';
 import ImageBlock from '@/components/molecules/ImageBlock';
 import CloseIcon from '@/components/svgs/close';
+import { iconMap } from '@/components/svgs';
 import MenuIcon from '@/components/svgs/menu';
 import HeaderLink from './HeaderLink';
 
@@ -150,14 +151,17 @@ function MobileMenu(props) {
     return (
         <div className="ml-auto lg:hidden">
             <button
-                aria-label="Open Menu"
-                className="mobile-menu-button focus:outline-hidden"
-                onClick={() => setIsMenuOpen(true)}
+                type="button"
+                aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+                aria-expanded={isMenuOpen}
+                className="mobile-menu-trigger focus:outline-hidden"
+                onClick={() => setIsMenuOpen((state) => !state)}
             >
-                <MenuIcon className="fill-current w-icon h-icon" />
+                <span className="mobile-menu-trigger-label">{isMenuOpen ? 'Fechar' : 'Menu'}</span>
+                {isMenuOpen ? <CloseIcon className="fill-current w-icon h-icon" /> : <MenuIcon className="fill-current w-icon h-icon" />}
             </button>
             <div
-                className={classNames('mobile-menu-panel fixed inset-0 z-40', {
+                className={classNames('mobile-menu-panel fixed inset-0 z-50', {
                     'pointer-events-none': !isMenuOpen
                 })}
             >
@@ -172,34 +176,50 @@ function MobileMenu(props) {
                 />
                 <aside
                     className={classNames('mobile-menu-drawer', {
-                        'translate-x-0': isMenuOpen,
-                        'translate-x-full': !isMenuOpen
+                        'translate-x-0 opacity-100': isMenuOpen,
+                        'translate-x-full opacity-0': !isMenuOpen
                     })}
                     role="dialog"
                     aria-modal="true"
                     aria-label="Menu principal"
                 >
-                    <div className="site-header-bar justify-between">
-                        <SiteLogoLink {...logoProps} />
+                    <div className="mobile-menu-header">
+                        <SiteLogoLink {...logoProps} forceTitle={true} />
                         <button
+                            type="button"
                             aria-label="Close Menu"
-                            className="mobile-menu-button focus:outline-hidden"
+                            className="mobile-menu-close focus:outline-hidden"
                             onClick={() => setIsMenuOpen(false)}
                         >
+                            <span>Fechar</span>
                             <CloseIcon className="fill-current w-icon h-icon" />
                         </button>
                     </div>
                     {(primaryLinks.length > 0 || socialLinks.length > 0) && (
-                        <div className="flex flex-col gap-8 px-3 py-5 grow overflow-y-auto">
+                        <div className="mobile-menu-content grow overflow-y-auto">
                             {primaryLinks.length > 0 && (
-                                <ul className="mobile-menu-links">
-                                    <ListOfLinks links={primaryLinks} inMobileMenu={true} />
-                                </ul>
+                                <>
+                                    <p className="mobile-menu-section-label">Navegação</p>
+                                    <ul className="mobile-menu-links">
+                                        <ListOfLinks
+                                            links={primaryLinks}
+                                            inMobileMenu={true}
+                                            onNavigate={() => setIsMenuOpen(false)}
+                                        />
+                                    </ul>
+                                </>
                             )}
                             {socialLinks.length > 0 && (
-                                <ul className="mobile-menu-socials">
-                                    <ListOfSocialLinks links={socialLinks} inMobileMenu={true} />
-                                </ul>
+                                <>
+                                    <p className="mobile-menu-section-label">Contato</p>
+                                    <ul className="mobile-menu-socials">
+                                        <ListOfSocialLinks
+                                            links={socialLinks}
+                                            inMobileMenu={true}
+                                            onNavigate={() => setIsMenuOpen(false)}
+                                        />
+                                    </ul>
+                                </>
                             )}
                         </div>
                     )}
@@ -209,40 +229,79 @@ function MobileMenu(props) {
     );
 }
 
-function SiteLogoLink({ title, isTitleVisible, logo }) {
-    if (!(logo || (title && isTitleVisible))) {
+function SiteLogoLink({ title, isTitleVisible, logo, forceTitle = false }) {
+    if (!(logo || (title && (isTitleVisible || forceTitle)))) {
         return null;
     }
+    const mobileLogo = resolveMobileLogo(logo);
+
     return (
         <div className="flex items-center shrink-0">
             <Link href="/" className="site-logo-link">
-                {logo && <ImageBlock {...logo} className="max-h-12" />}
-                {title && isTitleVisible && <span className="text-base tracking-widest uppercase">{title}</span>}
+                {mobileLogo && <ImageBlock {...mobileLogo} className="site-logo-image-mobile lg:hidden" />}
+                {logo && <ImageBlock {...logo} className="site-logo-image-desktop hidden lg:block" />}
+                {title && (isTitleVisible || forceTitle) && <span className="site-logo-title">{title}</span>}
             </Link>
         </div>
     );
 }
 
-function ListOfLinks({ links, inMobileMenu }) {
+function ListOfLinks({ links, inMobileMenu, onNavigate = undefined }) {
     return links.map((link, index) => (
         <li key={index} className={classNames(inMobileMenu ? 'w-full' : 'inline-flex items-stretch')}>
             <HeaderLink
                 {...link}
+                mobile={inMobileMenu}
+                onClick={onNavigate}
                 className={classNames(inMobileMenu ? 'mobile-menu-link' : 'nav-link')}
             />
         </li>
     ));
 }
 
-function ListOfSocialLinks({ links, inMobileMenu = false }) {
-    return links.map((link, index) => (
-        <li key={index} className="inline-flex items-stretch">
-            <Social
-                {...link}
-                className={classNames('social-link-pill text-lg', {
-                    'w-12 h-12': inMobileMenu
-                })}
-            />
-        </li>
-    ));
+function ListOfSocialLinks({ links, inMobileMenu = false, onNavigate = undefined }) {
+    return links.map((link, index) => {
+        if (inMobileMenu) {
+            const IconComponent = iconMap[link.icon];
+            return (
+                <li key={index} className="w-full">
+                    <Link
+                        href={link.url}
+                        aria-label={link.altText}
+                        className="mobile-menu-social-link"
+                        onClick={onNavigate}
+                    >
+                        {IconComponent && <IconComponent className="fill-current h-icon w-icon" />}
+                        <span>{link.label || link.altText}</span>
+                    </Link>
+                </li>
+            );
+        }
+
+        return (
+            <li key={index} className="inline-flex items-stretch">
+                <Social
+                    {...link}
+                    className={classNames('social-link-pill text-lg', {
+                        'w-12 h-12': inMobileMenu
+                    })}
+                />
+            </li>
+        );
+    });
+}
+
+function resolveMobileLogo(logo) {
+    if (!logo?.url) {
+        return logo;
+    }
+
+    const mobileUrl = logo.url
+        .replace('ms-software-stacked-sem-fundo.png', 'ms-software-horizontal-sem-fundo.png')
+        .replace('ms-software-stacked.png', 'ms-software-horizontal.png');
+
+    return {
+        ...logo,
+        url: mobileUrl
+    };
 }

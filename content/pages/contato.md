@@ -67,17 +67,10 @@ sections:
     title: 'Canais de contato e atendimento'
     subtitle: 'Use o canal que fizer mais sentido para o momento do seu projeto.'
     text: >+
-      **WhatsApp**  
-      [+55 41 98794-0764](https://wa.me/5541987940764)
-
-      **E-mail comercial**  
-      [matheuzfsouza@gmail.com](mailto:matheuzfsouza@gmail.com)
-
-      **Localização**  
-      Curitiba - PR, com atendimento remoto para todo o Brasil.
-
-      **Perfil profissional**  
-      [LinkedIn](https://www.linkedin.com/in/matheus-souza-benini-997326268)
+      **WhatsApp:** [+55 41 98794-0764](https://wa.me/5541987940764)  
+      **E-mail comercial:** [matheuzfsouza@gmail.com](mailto:matheuzfsouza@gmail.com)  
+      **Perfil profissional:** [LinkedIn](https://www.linkedin.com/in/matheus-souza-benini-997326268)
+      **Localização:** Curitiba - PR, com atendimento remoto para todo o Brasil.
     media:
       type: VideoBlock
       url: /movie/black-bghome.mp4#t=0.9
