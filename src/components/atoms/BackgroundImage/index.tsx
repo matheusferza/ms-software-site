@@ -1,0 +1,26 @@
+import { mapStylesToClassNames as mapStyles } from '@/utils/map-styles-to-class-names';
+import classNames from 'classnames';
+
+export default function BackgroundImage(props) {
+    const { url, className, backgroundSize, backgroundPosition, backgroundRepeat, opacity } = props;
+    if (!url) {
+        return null;
+    }
+    return (
+        <div
+            className={classNames(
+                'fixed inset-0 -z-20 pointer-events-none',
+                mapStyles({
+                    backgroundSize: backgroundSize ?? 'cover',
+                    backgroundPosition: backgroundPosition ?? 'center',
+                    backgroundRepeat: backgroundRepeat ?? 'no-repeat'
+                }),
+                className
+            )}
+            style={{
+                backgroundImage: `url('${url}')`,
+                opacity: (opacity ?? 100) * 0.01
+            }}
+        />
+    );
+}

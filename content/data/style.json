@@ -1,0 +1,18 @@
+{
+    "type": "ThemeStyle",
+    "light": "#F7FBFF",
+    "onLight": "#07121C",
+    "dark": "#040A10",
+    "onDark": "#F4FBFF",
+    "primary": "#1CC6F2",
+    "onPrimary": "#05131D",
+    "secondary": "#112334",
+    "onSecondary": "#F4FBFF",
+    "complementary": "#254258",
+    "onComplementary": "#F4FBFF",
+    "fontBody": "\"Instrument Sans\", sans-serif",
+    "headingWeight": "600",
+    "headingCase": "none",
+    "onCard": "#D9F7FF",
+    "onButton": "#05131D"
+}

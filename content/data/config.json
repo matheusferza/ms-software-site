@@ -1,0 +1,128 @@
+{
+    "type": "Config",
+    "favicon": "/images/msfav.svg",
+    "header": {
+        "type": "Header",
+        "headerVariant": "variant-c",
+        "isSticky": true,
+        "title": "MS-Software",
+        "isTitleVisible": false,
+        "logo": {
+            "type": "ImageBlock",
+            "url": "/images/ms-software-stacked-sem-fundo.png",
+            "altText": "Logo da MS-Software"
+        },
+        "primaryLinks": [
+            {
+                "type": "Link",
+                "label": "Home",
+                "url": "/"
+            },
+            {
+                "type": "Link",
+                "label": "Sobre",
+                "url": "/sobre"
+            },
+            {
+                "type": "Link",
+                "label": "Serviços",
+                "url": "/servicos"
+            },
+            {
+                "type": "Link",
+                "label": "Soluções",
+                "url": "/projects"
+            },
+            {
+                "type": "Link",
+                "label": "Contato",
+                "url": "/contato"
+            }
+        ],
+        "socialLinks": [
+            {
+                "type": "Social",
+                "altText": "WhatsApp da MS-Software",
+                "label": "WhatsApp",
+                "url": "https://wa.me/5541987940764",
+                "icon": "whatsapp"
+            },
+            {
+                "type": "Social",
+                "altText": "E-mail da MS-Software",
+                "label": "E-mail",
+                "url": "mailto:matheuzfsouza@gmail.com",
+                "icon": "mail"
+            },
+            {
+                "type": "Social",
+                "altText": "LinkedIn",
+                "label": "LinkedIn",
+                "url": "https://www.linkedin.com/in/matheus-souza-benini-997326268",
+                "icon": "linkedin"
+            }
+        ],
+        "styles": {
+            "self": {
+                "width": "full"
+            }
+        }
+    },
+    "footer": {
+        "type": "Footer",
+        "primaryLinks": [
+            {
+                "type": "Link",
+                "label": "Sobre",
+                "url": "/sobre",
+                "altText": ""
+            },
+            {
+                "type": "Link",
+                "label": "Serviços",
+                "url": "/servicos",
+                "altText": ""
+            },
+            {
+                "type": "Link",
+                "label": "Soluções",
+                "url": "/projects",
+                "altText": ""
+            },
+            {
+                "type": "Link",
+                "label": "Contato",
+                "url": "/contato",
+                "altText": ""
+            },
+            {
+                "type": "Link",
+                "label": "WhatsApp",
+                "url": "https://wa.me/5541987940764",
+                "altText": ""
+            }
+        ],
+        "contacts": {
+            "type": "ContactBlock",
+            "title": "Atendimento comercial MS-Software",
+            "phoneNumber": "+55 41 98794-0764",
+            "phoneAltText": "Número de telefone comercial",
+            "email": "matheuzfsouza@gmail.com",
+            "emailAltText": "Endereço de e-mail comercial",
+            "address": "Curitiba - PR | Atendimento remoto para todo o Brasil",
+            "addressAltText": "Localização e atendimento"
+        },
+        "copyrightText": "© 2026 MS-Software. Sistemas sob medida, automações, sites profissionais e suporte técnico.",
+        "styles": {
+            "self": {
+                "width": "narrow",
+                "padding": [
+                    "pt-16",
+                    "pb-16",
+                    "pr-4",
+                    "pl-4"
+                ]
+            }
+        }
+    }
+}
