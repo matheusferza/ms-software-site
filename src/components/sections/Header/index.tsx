@@ -162,7 +162,8 @@ function MobileMenu(props) {
             </button>
             <div
                 className={classNames('mobile-menu-panel fixed inset-0 z-50', {
-                    'pointer-events-none': !isMenuOpen
+                    'pointer-events-none': !isMenuOpen,
+                    'pointer-events-auto': isMenuOpen
                 })}
             >
                 <button
@@ -196,31 +197,33 @@ function MobileMenu(props) {
                         </button>
                     </div>
                     {(primaryLinks.length > 0 || socialLinks.length > 0) && (
-                        <div className="mobile-menu-content grow overflow-y-auto">
-                            {primaryLinks.length > 0 && (
-                                <>
-                                    <p className="mobile-menu-section-label">Navegação</p>
-                                    <ul className="mobile-menu-links">
-                                        <ListOfLinks
-                                            links={primaryLinks}
-                                            inMobileMenu={true}
-                                            onNavigate={() => setIsMenuOpen(false)}
-                                        />
-                                    </ul>
-                                </>
-                            )}
-                            {socialLinks.length > 0 && (
-                                <>
-                                    <p className="mobile-menu-section-label">Contato</p>
-                                    <ul className="mobile-menu-socials">
-                                        <ListOfSocialLinks
-                                            links={socialLinks}
-                                            inMobileMenu={true}
-                                            onNavigate={() => setIsMenuOpen(false)}
-                                        />
-                                    </ul>
-                                </>
-                            )}
+                        <div className="mobile-menu-body">
+                            <nav className="mobile-menu-content" aria-label="Navegacao principal">
+                                {primaryLinks.length > 0 && (
+                                    <div className="mobile-menu-group">
+                                        <p className="mobile-menu-section-label">Navegacao</p>
+                                        <ul className="mobile-menu-links">
+                                            <ListOfLinks
+                                                links={primaryLinks}
+                                                inMobileMenu={true}
+                                                onNavigate={() => setIsMenuOpen(false)}
+                                            />
+                                        </ul>
+                                    </div>
+                                )}
+                                {socialLinks.length > 0 && (
+                                    <div className="mobile-menu-group">
+                                        <p className="mobile-menu-section-label">Contato</p>
+                                        <ul className="mobile-menu-socials">
+                                            <ListOfSocialLinks
+                                                links={socialLinks}
+                                                inMobileMenu={true}
+                                                onNavigate={() => setIsMenuOpen(false)}
+                                            />
+                                        </ul>
+                                    </div>
+                                )}
+                            </nav>
                         </div>
                     )}
                 </aside>
