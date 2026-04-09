@@ -6,11 +6,14 @@ metaDescription: 'A MS-Software desenvolve sistemas sob medida, automações, si
 colors: colors-a
 backgroundVideo:
   type: VideoBlock
-  url: /movie/black-bghome.mp4
+  url: /movie/black-bghome.mp4#t=0.4
   autoplay: true
   loop: true
   muted: true
   controls: false
+  playbackRate: 0.9
+  className: page-background-video-home
+  videoClassName: page-background-video-home-video
 sections:
   - elementId: hero
     type: HeroSection
@@ -41,15 +44,17 @@ sections:
         icon: mail
     media:
       type: VideoBlock
-      url: /movie/blue-smoke.mp4
+      url: /movie/blue-smoke.mp4#t=0.2
       aspectRatio: '16:9'
       autoplay: true
       loop: true
       muted: true
       controls: false
+      playbackRate: 0.95
     styles:
       self:
         class: hero-copy-bare
+        shellClass: hero-shell-home
         height: auto
         width: wide
         padding:
@@ -80,10 +85,21 @@ sections:
       - soluções comerciais e administrativas
 
       Em vez de entregar algo genérico, estruturamos a solução para ser útil, confiável e pronta para evoluir.
+    media:
+      type: VideoBlock
+      url: /movie/black-bghome.mp4#t=1.4
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.82
+      className: text-media-home-video
     styles:
       self:
         height: auto
         width: wide
+        mediaClass: text-media-shell-home
         padding:
           - pt-10
           - pb-10

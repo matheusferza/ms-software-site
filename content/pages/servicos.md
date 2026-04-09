@@ -6,11 +6,14 @@ metaDescription: 'Conheça os serviços da MS-Software: desenvolvimento de siste
 colors: colors-a
 backgroundVideo:
   type: VideoBlock
-  url: /movie/black-bghome.mp4
+  url: /movie/blue-smoke.mp4#t=1.1
   autoplay: true
   loop: true
   muted: true
   controls: false
+  playbackRate: 0.74
+  className: page-background-video-services
+  videoClassName: page-background-video-services-video
 sections:
   - elementId: hero
     type: HeroSection
@@ -35,9 +38,19 @@ sections:
         style: secondary
         showIcon: true
         icon: arrowRight
+    media:
+      type: VideoBlock
+      url: /movie/black-bghome.mp4#t=1.8
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.96
     styles:
       self:
         class: hero-copy-bare
+        shellClass: hero-shell-services
         width: wide
         padding:
           - pt-12
@@ -62,9 +75,21 @@ sections:
       - suporte técnico remoto para estabilização, manutenção e evolução
       - soluções comerciais e administrativas para caixa, relatórios, equipe, catálogo e operação
       - estrutura digital complementar com domínios, e-mail profissional, publicação e continuidade
+    media:
+      type: VideoBlock
+      url: /movie/blue-smoke.mp4#t=0.5
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.9
+      className: text-media-services-video
+    mediaPlacement: left
     styles:
       self:
         width: wide
+        mediaClass: text-media-shell-services
         padding:
           - pt-10
           - pb-10

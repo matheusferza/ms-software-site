@@ -19,18 +19,21 @@ export default function Component(props: HeroSection) {
     const sectionAlign = styles.self?.textAlign ?? 'left';
     const hasBackgroundMedia = media?.type === 'VideoBlock';
     const customClassName = styles.self?.class;
+    const shellClassName = styles.self?.shellClass;
+    const mediaClassName = styles.self?.mediaClass;
 
     return (
         <Section elementId={elementId} colors={colors} backgroundSize={backgroundSize} styles={styles.self}>
             <div
                 className={classNames(
                     'hero-shell',
+                    shellClassName,
                     hasBackgroundMedia ? 'hero-shell-background' : mapFlexDirectionStyles(sectionFlexDirection)
                 )}
             >
                 {hasBackgroundMedia && (
-                    <div className="hero-background-media" aria-hidden="true">
-                        <HeroMedia media={media} />
+                    <div className={classNames('hero-background-media', mediaClassName)} aria-hidden="true">
+                        <HeroMedia media={media} className={mediaClassName} />
                     </div>
                 )}
                 <div
@@ -81,7 +84,7 @@ export default function Component(props: HeroSection) {
                             'justify-center': sectionAlign === 'center'
                         })}
                     >
-                        <HeroMedia media={media} />
+                        <HeroMedia media={media} className={mediaClassName} />
                     </div>
                 )}
             </div>
@@ -89,15 +92,18 @@ export default function Component(props: HeroSection) {
     );
 }
 
-function HeroMedia({ media }) {
-    const mediaClassName = classNames({
-        'hero-media-image': media.type === 'ImageBlock',
-        'hero-media-video': media.type === 'VideoBlock'
-    });
+function HeroMedia({ media, className }) {
+    const mediaElementClassName = classNames(
+        {
+            'hero-media-image': media.type === 'ImageBlock',
+            'hero-media-video': media.type === 'VideoBlock'
+        },
+        media.className
+    );
 
     return (
-        <div className="hero-media-shell w-full">
-            <DynamicComponent {...media} className={mediaClassName} />
+        <div className={classNames('hero-media-shell w-full', className)}>
+            <DynamicComponent {...media} className={mediaElementClassName} />
         </div>
     );
 }

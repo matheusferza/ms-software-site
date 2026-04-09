@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useEffect, useRef } from 'react';
 
 import getVideoData from '@/utils/get-video-data';
 
@@ -9,7 +10,20 @@ const videoServiceMap = {
 };
 
 export default function VideoBlock(props) {
-    const { elementId, className, url, aspectRatio = '16:9', autoplay, loop, muted, controls = true } = props;
+    const {
+        elementId,
+        className,
+        url,
+        aspectRatio = '16:9',
+        autoplay,
+        loop,
+        muted,
+        controls = true,
+        playbackRate = 1,
+        objectPosition = 'center',
+        poster,
+        preload = 'metadata'
+    } = props;
     if (!url) {
         return null;
     }
@@ -28,7 +42,17 @@ export default function VideoBlock(props) {
             )}
         >
             {videoData.id && VideoComponent ? (
-                <VideoComponent id={videoData.id} autoplay={autoplay} loop={loop} muted={muted} controls={controls} />
+                <VideoComponent
+                    id={videoData.id}
+                    autoplay={autoplay}
+                    loop={loop}
+                    muted={muted}
+                    controls={controls}
+                    playbackRate={playbackRate}
+                    objectPosition={objectPosition}
+                    poster={poster}
+                    preload={preload}
+                />
             ) : (
                 <p className="absolute left-0 w-full italic text-center -translate-y-1/2 top-1/2">
                     Video URL is not supported.
@@ -76,15 +100,27 @@ function VimeoVideo({ id, autoplay, loop, muted, controls }) {
     );
 }
 
-function SelfHostedVideo({ id, autoplay, loop, muted, controls }) {
+function SelfHostedVideo({ id, autoplay, loop, muted, controls, playbackRate, objectPosition, poster, preload }) {
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.playbackRate = playbackRate ?? 1;
+        }
+    }, [playbackRate]);
+
     return (
         <video
+            ref={videoRef}
             {...(autoplay && { autoPlay: true })}
             {...(loop && { loop: true })}
             {...(muted && { muted: true })}
             {...(controls && { controls: true })}
+            {...(poster && { poster })}
             playsInline
+            preload={preload}
             className="absolute top-0 left-0 w-full h-full"
+            style={{ objectPosition }}
         >
             <source src={id} type="video/mp4" />
         </video>

@@ -6,11 +6,14 @@ metaDescription: 'Entre em contato com a MS-Software para solicitar orçamento, 
 colors: colors-a
 backgroundVideo:
   type: VideoBlock
-  url: /movie/black-bghome.mp4
+  url: /movie/black-bghome.mp4#t=2.1
   autoplay: true
   loop: true
   muted: true
   controls: false
+  playbackRate: 0.78
+  className: page-background-video-contact
+  videoClassName: page-background-video-contact-video
 sections:
   - elementId: hero
     type: HeroSection
@@ -35,9 +38,19 @@ sections:
         style: secondary
         showIcon: true
         icon: mail
+    media:
+      type: VideoBlock
+      url: /movie/blue-smoke.mp4#t=1.4
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.86
     styles:
       self:
         class: hero-copy-bare
+        shellClass: hero-shell-contact
         width: wide
         padding:
           - pt-12
@@ -65,9 +78,21 @@ sections:
 
       **Perfil profissional**  
       [LinkedIn](https://www.linkedin.com/in/matheus-souza-benini-997326268)
+    media:
+      type: VideoBlock
+      url: /movie/black-bghome.mp4#t=0.9
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.92
+      className: text-media-contact-video
+    mediaPlacement: left
     styles:
       self:
         width: wide
+        mediaClass: text-media-shell-contact
         padding:
           - pt-10
           - pb-10

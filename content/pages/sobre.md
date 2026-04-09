@@ -6,11 +6,14 @@ metaDescription: 'Conheça a MS-Software, empresa de desenvolvimento, automaçã
 colors: colors-a
 backgroundVideo:
   type: VideoBlock
-  url: /movie/black-bghome.mp4
+  url: /movie/black-bghome.mp4#t=1.2
   autoplay: true
   loop: true
   muted: true
   controls: false
+  playbackRate: 0.82
+  className: page-background-video-about
+  videoClassName: page-background-video-about-video
 sections:
   - elementId: sobre
     type: HeroSection
@@ -33,9 +36,19 @@ sections:
         label: 'Falar com a equipe'
         url: '/contato'
         style: secondary
+    media:
+      type: VideoBlock
+      url: /movie/blue-smoke.mp4#t=0.8
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.8
     styles:
       self:
         class: hero-copy-bare
+        shellClass: hero-shell-about
         height: auto
         width: wide
         padding:
@@ -58,9 +71,21 @@ sections:
       Em muitos casos, o desafio não é apenas "ter um sistema", mas ter uma estrutura que una **usabilidade, estabilidade, visibilidade e potencial comercial**.
 
       Por isso, nossos projetos partem de perguntas práticas: **o que precisa funcionar melhor**, **quem vai usar**, **qual etapa gera mais gargalo** e **como a solução pode evoluir sem virar bloqueio no futuro**.
+    media:
+      type: VideoBlock
+      url: /movie/black-bghome.mp4#t=2.4
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.88
+      className: text-media-about-video
+    mediaPlacement: left
     styles:
       self:
         width: wide
+        mediaClass: text-media-shell-about
         padding:
           - pt-10
           - pb-10

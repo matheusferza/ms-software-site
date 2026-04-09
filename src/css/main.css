@@ -239,11 +239,66 @@
         pointer-events: none;
     }
 
+    .page-background-video-home::after {
+        background:
+            linear-gradient(180deg, rgba(2, 7, 14, 0.78) 0%, rgba(3, 9, 17, 0.5) 28%, rgba(3, 8, 14, 0.82) 100%),
+            radial-gradient(circle at top right, rgba(28, 198, 242, 0.16), transparent 30%);
+    }
+
+    .page-background-video-about::after {
+        background:
+            linear-gradient(180deg, rgba(4, 7, 13, 0.9) 0%, rgba(7, 11, 18, 0.62) 32%, rgba(4, 8, 14, 0.84) 100%),
+            radial-gradient(circle at 12% 12%, rgba(163, 187, 214, 0.12), transparent 26%);
+    }
+
+    .page-background-video-services::after {
+        background:
+            linear-gradient(180deg, rgba(2, 8, 15, 0.86) 0%, rgba(2, 12, 20, 0.56) 32%, rgba(2, 7, 12, 0.82) 100%),
+            radial-gradient(circle at top left, rgba(29, 180, 219, 0.18), transparent 26%);
+    }
+
+    .page-background-video-contact::after {
+        background:
+            linear-gradient(180deg, rgba(3, 7, 12, 0.92) 0%, rgba(4, 10, 16, 0.72) 28%, rgba(2, 6, 10, 0.9) 100%),
+            radial-gradient(circle at 88% 14%, rgba(92, 130, 166, 0.14), transparent 24%);
+    }
+
+    .page-background-video-projects::after {
+        background:
+            linear-gradient(180deg, rgba(4, 8, 14, 0.82) 0%, rgba(4, 12, 20, 0.56) 34%, rgba(4, 8, 14, 0.84) 100%),
+            radial-gradient(circle at 82% 18%, rgba(28, 198, 242, 0.14), transparent 28%);
+    }
+
     .page-background-video-element {
         width: 100%;
         height: 100%;
         object-fit: cover;
         filter: brightness(0.34) saturate(0.82);
+    }
+
+    .page-background-video-home-video {
+        filter: brightness(0.32) saturate(0.84) contrast(1.02);
+        transform: scale(1.03);
+    }
+
+    .page-background-video-about-video {
+        filter: brightness(0.28) saturate(0.62) contrast(1.06);
+        transform: scale(1.05);
+    }
+
+    .page-background-video-services-video {
+        filter: brightness(0.24) saturate(1.02) contrast(1.08);
+        transform: scale(1.04);
+    }
+
+    .page-background-video-contact-video {
+        filter: brightness(0.22) saturate(0.52) contrast(1.1);
+        transform: scale(1.06);
+    }
+
+    .page-background-video-projects-video {
+        filter: brightness(0.26) saturate(0.92) contrast(1.06);
+        transform: scale(1.04);
     }
 
     .site-header-bar {
@@ -531,6 +586,36 @@
         pointer-events: none;
     }
 
+    .hero-shell-home::after {
+        background:
+            linear-gradient(90deg, rgba(3, 8, 16, 0.9) 0%, rgba(3, 8, 16, 0.72) 36%, rgba(3, 8, 16, 0.24) 100%),
+            radial-gradient(circle at 84% 18%, rgba(43, 214, 255, 0.18), transparent 26%);
+    }
+
+    .hero-shell-about::after {
+        background:
+            linear-gradient(90deg, rgba(6, 10, 16, 0.92) 0%, rgba(8, 13, 20, 0.74) 38%, rgba(8, 13, 20, 0.22) 100%),
+            radial-gradient(circle at 78% 20%, rgba(191, 214, 240, 0.14), transparent 24%);
+    }
+
+    .hero-shell-services::after {
+        background:
+            linear-gradient(90deg, rgba(2, 8, 15, 0.9) 0%, rgba(2, 10, 18, 0.62) 34%, rgba(2, 10, 18, 0.22) 100%),
+            radial-gradient(circle at 82% 24%, rgba(28, 198, 242, 0.22), transparent 24%);
+    }
+
+    .hero-shell-contact::after {
+        background:
+            linear-gradient(90deg, rgba(4, 8, 13, 0.94) 0%, rgba(4, 8, 13, 0.78) 40%, rgba(4, 8, 13, 0.28) 100%),
+            radial-gradient(circle at 82% 22%, rgba(118, 147, 176, 0.18), transparent 24%);
+    }
+
+    .hero-shell-projects::after {
+        background:
+            linear-gradient(90deg, rgba(3, 8, 16, 0.92) 0%, rgba(4, 10, 18, 0.7) 36%, rgba(4, 10, 18, 0.22) 100%),
+            radial-gradient(circle at 82% 20%, rgba(32, 168, 212, 0.18), transparent 24%);
+    }
+
     .hero-background-media {
         position: absolute;
         inset: 0;
@@ -723,6 +808,101 @@
         border-radius: 1.4rem;
     }
 
+    .text-section-split {
+        align-items: center;
+    }
+
+    .text-section-media-frame {
+        position: relative;
+        overflow: hidden;
+        min-height: 100%;
+        border: 1px solid rgba(160, 190, 255, 0.12);
+        border-radius: 1.8rem;
+        background:
+            linear-gradient(180deg, rgba(10, 18, 31, 0.92), rgba(5, 9, 16, 0.94)),
+            rgba(6, 12, 23, 0.78);
+        box-shadow:
+            0 24px 70px rgba(0, 0, 0, 0.26),
+            inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .text-section-media-frame::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 22%),
+            linear-gradient(180deg, rgba(3, 8, 15, 0.08), rgba(3, 8, 15, 0.34));
+    }
+
+    .text-section-media-frame > .w-full {
+        min-height: 22rem;
+    }
+
+    .text-section-media-frame video,
+    .text-section-media-frame iframe,
+    .text-section-media-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .text-section-media-frame.text-media-shell-home::after {
+        background:
+            linear-gradient(135deg, rgba(43, 214, 255, 0.08), transparent 28%),
+            linear-gradient(180deg, rgba(4, 10, 18, 0.04), rgba(4, 10, 18, 0.32));
+    }
+
+    .text-section-media-frame.text-media-shell-about::after {
+        background:
+            linear-gradient(135deg, rgba(196, 214, 233, 0.08), transparent 28%),
+            linear-gradient(180deg, rgba(4, 8, 14, 0.08), rgba(4, 8, 14, 0.36));
+    }
+
+    .text-section-media-frame.text-media-shell-services::after {
+        background:
+            linear-gradient(135deg, rgba(28, 198, 242, 0.12), transparent 30%),
+            linear-gradient(180deg, rgba(2, 8, 15, 0.08), rgba(2, 8, 15, 0.34));
+    }
+
+    .text-section-media-frame.text-media-shell-contact::after {
+        background:
+            linear-gradient(135deg, rgba(129, 160, 191, 0.1), transparent 30%),
+            linear-gradient(180deg, rgba(4, 8, 13, 0.1), rgba(4, 8, 13, 0.38));
+    }
+
+    .text-section-media-frame.text-media-shell-projects::after {
+        background:
+            linear-gradient(135deg, rgba(28, 198, 242, 0.1), transparent 30%),
+            linear-gradient(180deg, rgba(3, 8, 16, 0.08), rgba(3, 8, 16, 0.34));
+    }
+
+    .text-section-media-frame .text-media-home-video video {
+        filter: brightness(0.5) saturate(0.88) contrast(1.06);
+        transform: scale(1.04);
+    }
+
+    .text-section-media-frame .text-media-about-video video {
+        filter: brightness(0.48) saturate(0.7) contrast(1.08);
+        transform: scale(1.05);
+    }
+
+    .text-section-media-frame .text-media-services-video video {
+        filter: brightness(0.42) saturate(0.96) contrast(1.12);
+        transform: scale(1.05);
+    }
+
+    .text-section-media-frame .text-media-contact-video video {
+        filter: brightness(0.4) saturate(0.62) contrast(1.14);
+        transform: scale(1.06);
+    }
+
+    .text-section-media-frame .text-media-projects-video video {
+        filter: brightness(0.46) saturate(0.9) contrast(1.1);
+        transform: scale(1.05);
+    }
+
     .hero-background-media .hero-media-video {
         position: absolute;
         inset: 0;
@@ -737,6 +917,43 @@
     .hero-background-media .hero-media-video video {
         border-radius: 0;
         filter: saturate(1.08) brightness(0.62);
+    }
+
+    .hero-shell-home .hero-background-media .hero-media-video video {
+        filter: saturate(1.08) brightness(0.58) contrast(1.08);
+        transform: scale(1.03);
+    }
+
+    .hero-shell-about .hero-background-media .hero-media-video video {
+        filter: saturate(0.72) brightness(0.46) contrast(1.12);
+        transform: scale(1.06);
+    }
+
+    .hero-shell-services .hero-background-media .hero-media-video video {
+        filter: saturate(1.04) brightness(0.42) contrast(1.16);
+        transform: scale(1.05);
+    }
+
+    .hero-shell-contact .hero-background-media .hero-media-video video {
+        filter: saturate(0.58) brightness(0.38) contrast(1.14);
+        transform: scale(1.08);
+    }
+
+    .hero-shell-projects .hero-background-media .hero-media-video video {
+        filter: saturate(0.94) brightness(0.44) contrast(1.12);
+        transform: scale(1.05);
+    }
+
+    .hero-shell-about .hero-eyebrow,
+    .hero-shell-contact .hero-eyebrow {
+        background: rgba(7, 12, 20, 0.48);
+        border-color: rgba(193, 211, 230, 0.16);
+    }
+
+    .hero-shell-services .hero-eyebrow,
+    .hero-shell-projects .hero-eyebrow {
+        background: rgba(2, 10, 18, 0.42);
+        border-color: rgba(89, 191, 220, 0.18);
     }
 
     .featured-grid {

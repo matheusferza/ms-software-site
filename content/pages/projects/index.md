@@ -6,11 +6,14 @@ metaDescription: 'Conheça os cases e soluções desenvolvidos pela MS-Software 
 colors: colors-a
 backgroundVideo:
   type: VideoBlock
-  url: /movie/black-bghome.mp4
+  url: /movie/blue-smoke.mp4#t=1.8
   autoplay: true
   loop: true
   muted: true
   controls: false
+  playbackRate: 0.8
+  className: page-background-video-projects
+  videoClassName: page-background-video-projects-video
 projectFeed:
   type: ProjectFeedSection
   colors: colors-f
@@ -53,17 +56,59 @@ topSections:
         style: secondary
         showIcon: true
         icon: arrowRight
+    media:
+      type: VideoBlock
+      url: /movie/black-bghome.mp4#t=2.5
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.9
     colors: colors-f
     backgroundSize: full
     elementId: ''
     styles:
       self:
         class: hero-copy-bare
+        shellClass: hero-shell-projects
         height: auto
         width: wide
         padding:
           - pt-12
           - pb-8
+          - pl-4
+          - pr-4
+        textAlign: left
+
+  - type: TextSection
+    variant: variant-b
+    colors: colors-f
+    kicker: 'Estrutura'
+    title: 'Cada projeto parte de um processo real e se transforma em uma solução com leitura comercial'
+    subtitle: 'Os cases da MS-Software não são experimentos visuais. Eles nascem de necessidade operacional, fluxo de uso e posicionamento claro.'
+    text: >-
+      Antes de desenvolver, organizamos cenário, prioridade e uso real da solução. Isso permite que cada entrega tenha mais consistência visual, mais aderência ao negócio e mais espaço para evoluir.
+
+      Ao reunir sistemas, interfaces, automações e páginas comerciais, os projetos ganham uma base que funciona melhor tanto para a equipe quanto para a apresentação da empresa ao cliente final.
+    media:
+      type: VideoBlock
+      url: /movie/blue-smoke.mp4#t=0.9
+      aspectRatio: '16:9'
+      autoplay: true
+      loop: true
+      muted: true
+      controls: false
+      playbackRate: 0.84
+      className: text-media-projects-video
+    mediaPlacement: left
+    styles:
+      self:
+        width: wide
+        mediaClass: text-media-shell-projects
+        padding:
+          - pt-6
+          - pb-12
           - pl-4
           - pr-4
         textAlign: left
